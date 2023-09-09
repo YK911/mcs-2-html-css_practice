@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .custom-list {
+        counter-reset: item 0; /* Встановлюємо початкове значення для лічильника */
+        list-style-type: none; /* Сховуємо стандартну нумерацію списку */
+      }
+
+      .custom-list li::before {
+        content: "Number: " counter(item); /* Виводимо значення лічильника перед кожним елементом */
+        counter-increment: item; /* Збільшуємо лічильник після кожного елемента */
+        margin-right: 5px; /* Додатковий відступ між номером та текстом */
+      }
+
+      .multi-level-list {
+        counter-reset: section; /* Встановлюємо початкове значення для лічильника кожного тега ol */
+        list-style-type: none;
+        margin-bottom: 10px;
+      }
+
+      .multi-level-list li::before {
+        counter-increment: section; /* Інкрементуємо лічильник поточного рівня вкладеності */
+        content: counters(section, ".") " "; /* Додаємо значення для всіх рівнів вкладеності, використовуючи розділювач '.' */
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="custom-list">
+      <li>Перший елемент</li>
+      <li>Другий елемент</li>
+      <li>Третій елемент</li>
+      <li>Четвертий елемент</li>
+      <li>П'ятий елемент</li>
+    </ul>
+
+    <ol class="multi-level-list">
+      <li>item</li>
+      <li>
+        item
+        <ol class="multi-level-list">
+          <li>item</li>
+          <li>item</li>
+          <li>
+            item
+            <ol class="multi-level-list">
+              <li>item</li>
+              <li>item</li>
+            </ol>
+            <ol class="multi-level-list">
+              <li>item</li>
+              <li>item</li>
+              <li>item</li>
+            </ol>
+          </li>
+          <li>item</li>
+        </ol>
+      </li>
+      <li>item</li>
+      <li>item</li>
+    </ol>
+    <ol class="multi-level-list">
+      <li>item</li>
+      <li>item</li>
+    </ol>
+  </body>
+</html>
